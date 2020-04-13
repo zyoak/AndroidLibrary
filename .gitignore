@@ -6,3 +6,4 @@
 /*.apk
 /build
 /local.properties
+/app/*.iml
