@@ -21,8 +21,7 @@
             android:minHeight="48dp"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
-            app:titleMargin="0dp"
-            app:titleTextAppearance="@style/Toolbar.TitleText"/>
+            app:titleMargin="0dp" />
 
     </FrameLayout>
 
