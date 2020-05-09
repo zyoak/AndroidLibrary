@@ -2,6 +2,7 @@ package com.oka.widget.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.Gravity
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.layout_common_dialog.*
  */
 class CommonDialog(context: Context ,private val builder: Builder) : Dialog(context , R.style.transparent_dialog){
 
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window?.let {
@@ -30,6 +31,8 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
             dialogParams.gravity = Gravity.CENTER
             it.attributes = dialogParams
         }
+        setCancelable(builder.cancelable)
+        setCanceledOnTouchOutside(builder.canceledOnTouchOutside)
         setContentView(R.layout.layout_common_dialog)
         llContainer.setBackgroundResource(R.drawable.shape_rect_fff_3)
 
@@ -54,7 +57,9 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
                 text = it
                 visibility = View.VISIBLE
                 setTextColor(context.resources.getColor(builder.negativeTxtColorResId))
-                setOnClickListener(builder.negativeClickListener)
+                setOnClickListener{
+                    builder.negativeClickListener?.invoke(this@CommonDialog)
+                }
             }
         }
 
@@ -63,7 +68,9 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
                 text = it
                 visibility = View.VISIBLE
                 setTextColor(context.resources.getColor(builder.positiveTxtColorResId))
-                setOnClickListener(builder.positiveClickListener)
+                setOnClickListener{
+                    builder.positiveClickListener?.invoke(this@CommonDialog)
+                }
             }
         }
 
@@ -86,11 +93,13 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
         var contentTxtColorResId : Int = R.color.color_999999
         var negativeTxt : String? = null
         var negativeTxtColorResId : Int = R.color.color_333333
-        var negativeClickListener : View.OnClickListener? = null
+        var negativeClickListener : OnClickListener? = null
         var positiveTxt : String? = null
         var positiveTxtColorResId : Int = R.color.color_333333
-        var positiveClickListener : View.OnClickListener? = null
+        var positiveClickListener : OnClickListener? = null
         var customContentView : View? = null
+        var canceledOnTouchOutside : Boolean = true
+        var cancelable : Boolean = true
 
         fun builder() : CommonDialog{
             return CommonDialog(context , this)
@@ -100,3 +109,5 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
 
 
 }
+
+typealias OnClickListener = (dialog : DialogInterface) -> Unit

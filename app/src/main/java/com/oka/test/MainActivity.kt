@@ -1,8 +1,12 @@
 package com.oka.test
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import com.oka.widget.dialog.CommonDialog
+import com.oka.widget.dialog.OnClickListener
 import com.oka.widget.extensions.dp
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,8 +23,19 @@ class MainActivity : AppCompatActivity() {
                 positiveTxt = "重新选择"
                 borderWidth = 53.dp
                 positiveTxtColorResId = R.color.color_ff6200
+                negativeClickListener = object : OnClickListener{
+                    override fun invoke(dialog: DialogInterface) {
+                        dialog.dismiss()
+                    }
+                }
+                positiveClickListener = object : OnClickListener{
+                    override fun invoke(dialog: DialogInterface) {
+                        dialog.dismiss()
+                    }
+                }
             }.builder().show()
         }
+
     }
 
 
