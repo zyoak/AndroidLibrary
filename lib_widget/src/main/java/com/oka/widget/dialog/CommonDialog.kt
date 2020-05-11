@@ -70,7 +70,7 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
                 visibility = View.VISIBLE
                 setTextColor(context.resources.getColor(builder.positiveTxtColorResId))
                 setOnClickListener{
-                    builder.negativeClickListener?.onClick(this@CommonDialog , DialogInterface.BUTTON_POSITIVE)
+                    builder.positiveClickListener?.onClick(this@CommonDialog , DialogInterface.BUTTON_POSITIVE)
                 }
             }
             bottom_line.visibility = View.VISIBLE
