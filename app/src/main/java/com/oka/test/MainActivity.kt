@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.oka.widget.dialog.CommonDialog
+import com.oka.widget.dialog.LoadingDialog
 import com.oka.widget.extensions.dp
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.zip.Inflater
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btn.setOnClickListener {
+        btnCommonDialog.setOnClickListener {
             CommonDialog.Builder(this).apply {
 //                titleTxt = "温馨提示"
 //                contentTxt = "根据新规要求，您的投资经历低于2年，不符合合格投资者的条件。"
@@ -27,6 +28,10 @@ class MainActivity : AppCompatActivity() {
                 positiveClickListener = DialogInterface.OnClickListener { dialog, _ -> dialog.dismiss() }
 
             }.builder().show()
+        }
+
+        btnLoadingDialog.setOnClickListener {
+            LoadingDialog(this).show()
         }
 
     }
