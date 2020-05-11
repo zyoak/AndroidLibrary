@@ -58,7 +58,7 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
                 visibility = View.VISIBLE
                 setTextColor(context.resources.getColor(builder.negativeTxtColorResId))
                 setOnClickListener{
-                    builder.negativeClickListener?.invoke(this@CommonDialog)
+                    builder.negativeClickListener?.onClick(this@CommonDialog , DialogInterface.BUTTON_NEGATIVE)
                 }
             }
         }
@@ -69,7 +69,7 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
                 visibility = View.VISIBLE
                 setTextColor(context.resources.getColor(builder.positiveTxtColorResId))
                 setOnClickListener{
-                    builder.positiveClickListener?.invoke(this@CommonDialog)
+                    builder.negativeClickListener?.onClick(this@CommonDialog , DialogInterface.BUTTON_POSITIVE)
                 }
             }
         }
@@ -93,10 +93,10 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
         var contentTxtColorResId : Int = R.color.color_999999
         var negativeTxt : String? = null
         var negativeTxtColorResId : Int = R.color.color_333333
-        var negativeClickListener : OnClickListener? = null
+        var negativeClickListener : DialogInterface.OnClickListener? = null
         var positiveTxt : String? = null
         var positiveTxtColorResId : Int = R.color.color_333333
-        var positiveClickListener : OnClickListener? = null
+        var positiveClickListener : DialogInterface.OnClickListener? = null
         var customContentView : View? = null
         var canceledOnTouchOutside : Boolean = true
         var cancelable : Boolean = true
@@ -109,5 +109,3 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
 
 
 }
-
-typealias OnClickListener = (dialog : DialogInterface) -> Unit
