@@ -61,6 +61,7 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
                     builder.negativeClickListener?.onClick(this@CommonDialog , DialogInterface.BUTTON_NEGATIVE)
                 }
             }
+            bottom_line.visibility = View.VISIBLE
         }
 
         builder.positiveTxt?.let {
@@ -72,6 +73,7 @@ class CommonDialog(context: Context ,private val builder: Builder) : Dialog(cont
                     builder.negativeClickListener?.onClick(this@CommonDialog , DialogInterface.BUTTON_POSITIVE)
                 }
             }
+            bottom_line.visibility = View.VISIBLE
         }
 
         builder.customContentView?.let {
