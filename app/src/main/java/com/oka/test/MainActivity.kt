@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             LoadingDialog(this).show()
         }
 
+
     }
 
 

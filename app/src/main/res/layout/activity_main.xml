@@ -8,18 +8,34 @@
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnCommonDialog"
+    <in.srain.cube.views.ptr.PtrFrameLayout
+        android:id="@+id/ptrView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CommonDialog" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnCommonDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CommonDialog" />
 
 
-    <Button
-        android:id="@+id/btnLoadingDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LoadingDialog" />
+            <Button
+                android:id="@+id/btnLoadingDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LoadingDialog" />
+
+        </LinearLayout>
+
+    </in.srain.cube.views.ptr.PtrFrameLayout>
+
+
 
 
 </LinearLayout>
