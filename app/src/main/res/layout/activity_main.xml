@@ -66,6 +66,10 @@
                 android:layout_marginRight="28dp"
                 android:layout_marginTop="14dp"
                 android:maxLength="13"
+                android:hint="请输入手机号"
+                android:background="@null"
+                android:drawablePadding="5dp"
+                android:drawableBottom="@drawable/shape_rect_ddd_h1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

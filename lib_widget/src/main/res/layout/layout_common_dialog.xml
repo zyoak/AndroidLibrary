@@ -64,7 +64,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:showDividers="middle"
-        android:divider="@drawable/shape_rect_ddd_1"
+        android:divider="@drawable/shape_rect_ddd_w1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
