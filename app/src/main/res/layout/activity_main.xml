@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="LoadingDialog" />
 
-            <com.oka.widget.edit.CaptchaInputView
+            <com.oka.widget.text.CaptchaInputView
                 android:id="@+id/captcha_input_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,11 +46,34 @@
                 app:captchaViewHeight="52dp"
                 app:captchaViewSize="52dp" />
 
+
+            <com.oka.widget.text.TimerTextView
+                android:id="@+id/tvTimer"
+                app:defaultText="重新发送"
+                app:countDownText="秒后重新发送"
+                app:timeSecond="5"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="14dp"
+                android:textSize="14dp"
+                android:textColor="@drawable/selector_enabled_1c5c9a_a5a5a5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <com.oka.widget.text.PhoneNumInputEditText
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="14dp"
+                android:maxLength="13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
         </LinearLayout>
 
+
     </com.oka.widget.ptr.PtrView>
-
-
-
 
 </LinearLayout>

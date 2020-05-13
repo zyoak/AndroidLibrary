@@ -1,4 +1,4 @@
-package com.oka.widget.edit;
+package com.oka.widget.text;
 
 import android.content.Context;
 import android.content.res.Resources;

@@ -47,6 +47,9 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        tvTimer.setOnClickListener {
+            tvTimer.startTimer()
+        }
 
     }
 

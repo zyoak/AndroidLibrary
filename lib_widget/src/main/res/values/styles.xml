@@ -27,4 +27,11 @@
         <attr name="captchaViewPadding" format="dimension"/>
     </declare-styleable>
 
+    <declare-styleable name="TimerTextView">
+        <attr name="timeSecond" format="integer"/>
+        <attr name="defaultText" format="string"/>
+        <attr name="countDownText" format="string"/>
+    </declare-styleable>
+
+
 </resources>
