@@ -1,15 +1,21 @@
 package com.oka.widget.text;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.widget.EditText;
+
+import com.oka.widget.R;
+import com.oka.widget.text.listener.ActionModeCallback;
+
 /**
  * 自定义切割手机号 EditText
  * 实现效果：输入手机号，实现按344位置切分。
@@ -34,8 +40,9 @@ public class PhoneNumInputEditText extends EditText {
      */
     private String phone = "";
 
-    CurrentPhone currentPhoneListener;
-
+    private CurrentPhone currentPhoneListener;
+    private boolean isShowDelIcon;
+    private Drawable mClearDrawable;
 
     public PhoneNumInputEditText(Context context) {
         this(context, null);
@@ -43,9 +50,41 @@ public class PhoneNumInputEditText extends EditText {
 
     public PhoneNumInputEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        TypedArray a = context.obtainStyledAttributes(attrs , R.styleable.PhoneNumInputEditText);
+        isShowDelIcon = a.getBoolean(R.styleable.PhoneNumInputEditText_isShowDelIcon , false);
+        a.recycle();
+
+        setInputType(InputType.TYPE_CLASS_PHONE);
         initSplitListener();
         disableCopy();
-        setInputType(InputType.TYPE_CLASS_PHONE);
+        configDelIcon();
+    }
+
+    private void configDelIcon(){
+        if(isShowDelIcon){
+            mClearDrawable = getCompoundDrawables()[2];
+            if(mClearDrawable == null) mClearDrawable = getResources().getDrawable(R.drawable.ic_edit_del);
+            Rect bounds = mClearDrawable.getBounds();
+            int drawableSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP , 16 , getResources().getDisplayMetrics());
+            mClearDrawable.setBounds(bounds.left , bounds.top , bounds.right + drawableSize , bounds.bottom + drawableSize);
+        }
+    }
+
+
+    public void setClearIconVisible(boolean isShow){
+        Drawable right = isShow ? mClearDrawable : null;
+        setCompoundDrawables(getCompoundDrawables()[0] , getCompoundDrawables()[1] , right , getCompoundDrawables()[3]);
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        if(isShowDelIcon && event.getAction() == MotionEvent.ACTION_UP){
+            if(getCompoundDrawables()[2] != null){
+                if(event.getX() > (getWidth() - getTotalPaddingRight()) && event.getX() < (getWidth() - getPaddingRight())){ // 点击删除图片位置
+                    setText("");
+                }
+            }
+        }
+        return super.onTouchEvent(event);
     }
 
 
@@ -149,7 +188,11 @@ public class PhoneNumInputEditText extends EditText {
                         }
                     }
                 }
-
+                if(isShowDelIcon && TextUtils.isEmpty(s.toString().trim())){
+                    setClearIconVisible(false);
+                }else if(isShowDelIcon){
+                    setClearIconVisible(true);
+                }
             }
         });
     }
@@ -220,27 +263,7 @@ public class PhoneNumInputEditText extends EditText {
     private void disableCopy() {
         setTextIsSelectable(false);
         setLongClickable(false);
-        setCustomSelectionActionModeCallback(new ActionMode.Callback(){
-            @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                return false;
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                return false;
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                return false;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-
-            }
-        });
+        setCustomSelectionActionModeCallback(new ActionModeCallback());
         setSelectAllOnFocus(false);
     }
 }

@@ -10,14 +10,14 @@ import android.os.Handler;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
 import androidx.appcompat.widget.AppCompatEditText;
 import com.oka.widget.R;
+import com.oka.widget.text.listener.ActionModeCallback;
+
 import java.util.ArrayList;
 import java.util.List;
 /**
+ *
  * 验证码输入框
  */
 public class CaptchaInputView extends AppCompatEditText {
@@ -125,27 +125,7 @@ public class CaptchaInputView extends AppCompatEditText {
         setLongClickable(false);
         //最大字数
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(20){}});
-        setCustomSelectionActionModeCallback(new ActionMode.Callback(){
-            @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                return false;
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                return false;
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                return false;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-
-            }
-        });
+        setCustomSelectionActionModeCallback(new ActionModeCallback());
         setSelectAllOnFocus(false);
     }
 

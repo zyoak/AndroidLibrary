@@ -33,5 +33,9 @@
         <attr name="countDownText" format="string"/>
     </declare-styleable>
 
+    <declare-styleable name="PhoneNumInputEditText">
+        <attr name="isShowDelIcon" format="boolean"/>
+    </declare-styleable>
+
 
 </resources>
