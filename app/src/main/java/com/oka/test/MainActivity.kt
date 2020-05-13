@@ -3,10 +3,13 @@ package com.oka.test
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
+import android.view.View
 import com.oka.widget.dialog.CommonDialog
 import com.oka.widget.dialog.LoadingDialog
 import com.oka.widget.extensions.dp
+import com.oka.widget.ptr.PtrView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.zip.Inflater
 
@@ -32,6 +35,16 @@ class MainActivity : AppCompatActivity() {
 
         btnLoadingDialog.setOnClickListener {
             LoadingDialog(this).show()
+        }
+
+        ptrView.onRefreshListener = object : PtrView.OnRefreshListener {
+
+            override fun onRefresh(ptrView: PtrView) {
+                Handler().postDelayed({
+                    ptrView.refreshComplete()
+                } ,1000)
+            }
+
         }
 
 

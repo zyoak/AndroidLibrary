@@ -8,7 +8,7 @@
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
-    <in.srain.cube.views.ptr.PtrFrameLayout
+    <com.oka.widget.ptr.PtrView
         android:id="@+id/ptrView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -31,9 +31,24 @@
                 android:layout_height="wrap_content"
                 android:text="LoadingDialog" />
 
+            <com.oka.widget.edit.CaptchaInputView
+                android:id="@+id/captcha_input_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="61dp"
+                android:background="@android:color/transparent"
+                android:inputType="number"
+                android:maxLength="5"
+                app:captchaLength = "5"
+                app:captchaTextSize="30dp"
+                app:captchaViewHeight="52dp"
+                app:captchaViewSize="52dp" />
+
         </LinearLayout>
 
-    </in.srain.cube.views.ptr.PtrFrameLayout>
+    </com.oka.widget.ptr.PtrView>
 
 
 
