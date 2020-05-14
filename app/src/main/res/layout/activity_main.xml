@@ -1,18 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.oka.widget.ptr.PtrView
+        android:id="@+id/ptrView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnCommonDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CommonDialog" />
+
+
+            <Button
+                android:id="@+id/btnLoadingDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LoadingDialog" />
+
+            <com.oka.widget.text.CaptchaInputView
+                android:id="@+id/captcha_input_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="61dp"
+                android:background="@android:color/transparent"
+                android:inputType="number"
+                android:maxLength="5"
+                app:captchaLength = "5"
+                app:captchaTextSize="30dp"
+                app:captchaViewHeight="52dp"
+                app:captchaViewSize="52dp" />
+
+
+            <com.oka.widget.text.TimerTextView
+                android:id="@+id/tvTimer"
+                app:defaultText="重新发送"
+                app:countDownText="秒后重新发送"
+                app:timeSecond="5"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="14dp"
+                android:textSize="14dp"
+                android:textColor="@drawable/selector_enabled_1c5c9a_a5a5a5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <com.oka.widget.text.PhoneNumInputEditText
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="14dp"
+                android:maxLength="13"
+                android:hint="请输入手机号"
+                app:isShowDelIcon="true"
+                android:background="@null"
+                android:drawablePadding="5dp"
+                android:drawableBottom="@drawable/shape_rect_ddd_h1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+        </LinearLayout>
+
+
+    </com.oka.widget.ptr.PtrView>
+
+</LinearLayout>

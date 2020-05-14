@@ -1,8 +1,45 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 
+    <!--透明的dialog-->
+    <style name="transparent_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
+    <style name="anim_in_from_bottom">
+        <item name="android:windowEnterAnimation">@anim/in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/out_to_bottom</item>
+    </style>
 
+    <declare-styleable name="PasswordInputView">
+        <attr name="captchaBorderWidth" format="dimension"/>
+        <attr name="captchaBorderColor" format="color"/>
+        <attr name="captchaBorderRadius" format="dimension"/>
+        <attr name="captchaLength" format="integer"/>
+        <attr name="captchaWidth" format="dimension"/>
+        <attr name="captchaColor" format="color"/>
+        <attr name="captchaRadius" format="dimension"/>
+        <attr name="captchaViewSize" format="dimension"/>
+        <attr name="captchaViewHeight" format="dimension"/>
+        <attr name="captchaTextSize" format="dimension"/>
+        <attr name="captchaViewPadding" format="dimension"/>
+    </declare-styleable>
 
+    <declare-styleable name="TimerTextView">
+        <attr name="timeSecond" format="integer"/>
+        <attr name="defaultText" format="string"/>
+        <attr name="countDownText" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="PhoneNumInputEditText">
+        <attr name="isShowDelIcon" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="AutoFitTextView">
+        <attr name="autoSizeMinTextSize" format="dimension" />
+        <attr name="autoSizeStepGranularity" format="dimension" />
+    </declare-styleable>
 
 </resources>
