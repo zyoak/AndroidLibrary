@@ -37,5 +37,9 @@
         <attr name="isShowDelIcon" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="AutoFitTextView">
+        <attr name="autoSizeMinTextSize" format="dimension" />
+        <attr name="autoSizeStepGranularity" format="dimension" />
+    </declare-styleable>
 
 </resources>
