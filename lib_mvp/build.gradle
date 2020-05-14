@@ -26,5 +26,6 @@ android {
 }
 
 dependencies {
+    api project(path: ':lib_widget')
     api project(path: ':lib_opensource')
 }

@@ -3,10 +3,11 @@ package com.oka.mvp.interf
 /**
  * Created by zengyong on 2020/5/8
  */
-interface IMvpPresenter{
+interface IMvpPresenter<V : IMvpView>{
 
+    fun getView() : V?
 
-    fun attachView(view : IMvpView)
+    fun attachView(view : V)
 
     fun detachView()
 

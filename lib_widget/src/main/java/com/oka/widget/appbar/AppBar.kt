@@ -104,9 +104,12 @@ class AppBar constructor(private val activity : AppCompatActivity,
     override fun setToolbarBackground(barBgColorId: Int){
         flBarContainer?.let { it.setBackgroundResource(barBgColorId) }
         //添加沉浸式
-        if(activity.resources.getColor(barBgColorId) != activity.resources.getColor(android.R.color.white)){
-            StatusBarUtil.clearMode(activity)
-            StatusBarUtil.setColor(activity , activity.resources.getColor(barBgColorId) , 0)
+        StatusBarUtil.clearMode(activity)
+        StatusBarUtil.setColor(activity , activity.resources.getColor(barBgColorId) , 0)
+        if(activity.resources.getColor(barBgColorId) == activity.resources.getColor(android.R.color.white)){
+            StatusBarUtil.setLightMode(activity)
+        }else{
+            StatusBarUtil.setDarkMode(activity)
         }
     }
 

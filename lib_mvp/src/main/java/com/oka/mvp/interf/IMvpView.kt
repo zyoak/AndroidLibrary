@@ -10,5 +10,10 @@ interface IMvpView{
     fun showToast(msg : String , duration : Int = Toast.LENGTH_SHORT)
 
 
+    fun showLoadingDialog()
+
+
+    fun hideLoadingDialog()
+
 
 }

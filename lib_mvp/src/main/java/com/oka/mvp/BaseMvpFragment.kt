@@ -1,29 +1,28 @@
 package com.oka.mvp
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.fengfd.base.appbar.IAppbar
+import androidx.fragment.app.Fragment
 import com.oka.mvp.interf.IMvpView
 /**
- * Created by zengyong on 2020/5/8
+ * Created by zengyong on 2020/5/14
  */
-abstract class BaseMvpActivity<V : IMvpView , P : BaseMvpPresenter<V>> : AppCompatActivity() , IMvpView {
+abstract class BaseMvpFragment<V : IMvpView , out P : BaseMvpPresenter<V>>() : Fragment() , IMvpView{
 
 
     protected val mPresenter : P by lazy { createPresenter() }
-    protected val appbar : IAppbar? by lazy { createAppBar() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        //添加appbar
-        appbar?.attachToActivity()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mPresenter?.let {
             it.attachView(this as V)
             it.onCreate()
@@ -31,9 +30,6 @@ abstract class BaseMvpActivity<V : IMvpView , P : BaseMvpPresenter<V>> : AppComp
     }
 
     abstract fun createPresenter() : P
-
-
-    abstract fun createAppBar() :  IAppbar?
 
 
     override fun onResume() {
@@ -56,7 +52,7 @@ abstract class BaseMvpActivity<V : IMvpView , P : BaseMvpPresenter<V>> : AppComp
 
 
     override fun showToast(msg: String, duration: Int) {
-        Toast.makeText(this , msg , duration).show()
+        Toast.makeText(context , msg , duration).show()
     }
 
     override fun showLoadingDialog() {

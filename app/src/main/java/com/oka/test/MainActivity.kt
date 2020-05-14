@@ -4,14 +4,16 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
+import com.fengfd.base.appbar.IAppbar
 import com.oka.mvp.BaseMvpActivity
+import com.oka.widget.appbar.AppBar
 import com.oka.widget.dialog.CommonDialog
 import com.oka.widget.dialog.LoadingDialog
 import com.oka.widget.extensions.dp
 import com.oka.widget.ptr.PtrView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseMvpActivity<MainPresenter>()  {
+class MainActivity : BaseMvpActivity<IMainView , MainPresenter>() , IMainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +57,12 @@ class MainActivity : BaseMvpActivity<MainPresenter>()  {
         return MainPresenter()
     }
 
-
+    override fun createAppBar(): IAppbar? {
+        return AppBar(this).apply {
+            titleTxt = "主页"
+            isShowBackIcon = false
+        }
+    }
 
 
 }
