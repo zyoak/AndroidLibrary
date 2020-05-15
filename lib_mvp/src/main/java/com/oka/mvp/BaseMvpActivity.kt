@@ -5,14 +5,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.fengfd.base.appbar.IAppbar
 import com.oka.mvp.interf.IMvpView
+import com.oka.widget.dialog.LoadingDialog
 /**
+ *
  * Created by zengyong on 2020/5/8
  */
-abstract class BaseMvpActivity<V : IMvpView , P : BaseMvpPresenter<V>> : AppCompatActivity() , IMvpView {
+abstract class BaseMvpActivity<V : IMvpView ,out P : BaseMvpPresenter<V>> : AppCompatActivity() , IMvpView {
 
 
     protected val mPresenter : P by lazy { createPresenter() }
     protected val appbar : IAppbar? by lazy { createAppBar() }
+    protected val loadingDialog : LoadingDialog by lazy { createLoadingDialog() }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +34,16 @@ abstract class BaseMvpActivity<V : IMvpView , P : BaseMvpPresenter<V>> : AppComp
         }
     }
 
+
     abstract fun createPresenter() : P
 
 
     abstract fun createAppBar() :  IAppbar?
 
+
+    protected fun createLoadingDialog() : LoadingDialog{
+        return LoadingDialog(this)
+    }
 
     override fun onResume() {
         super.onResume()
@@ -59,12 +68,14 @@ abstract class BaseMvpActivity<V : IMvpView , P : BaseMvpPresenter<V>> : AppComp
         Toast.makeText(this , msg , duration).show()
     }
 
-    override fun showLoadingDialog() {
 
+    override fun showLoadingDialog() {
+        loadingDialog.show()
     }
 
-    override fun hideLoadingDialog() {
 
+    override fun hideLoadingDialog() {
+        loadingDialog.dismiss()
     }
 
 

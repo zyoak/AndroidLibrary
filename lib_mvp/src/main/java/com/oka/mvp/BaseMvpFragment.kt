@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.oka.mvp.interf.IMvpView
+import com.oka.widget.dialog.LoadingDialog
+
 /**
  * Created by zengyong on 2020/5/14
  */
@@ -14,6 +16,7 @@ abstract class BaseMvpFragment<V : IMvpView , out P : BaseMvpPresenter<V>>() : F
 
 
     protected val mPresenter : P by lazy { createPresenter() }
+    protected val loadingDialog : LoadingDialog by lazy { createLoadingDialog() }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,6 +34,9 @@ abstract class BaseMvpFragment<V : IMvpView , out P : BaseMvpPresenter<V>>() : F
 
     abstract fun createPresenter() : P
 
+    protected fun createLoadingDialog() : LoadingDialog{
+        return LoadingDialog(context!!)
+    }
 
     override fun onResume() {
         super.onResume()
@@ -56,11 +62,11 @@ abstract class BaseMvpFragment<V : IMvpView , out P : BaseMvpPresenter<V>>() : F
     }
 
     override fun showLoadingDialog() {
-
+        loadingDialog.show()
     }
 
     override fun hideLoadingDialog() {
-
+        loadingDialog.dismiss()
     }
 
 

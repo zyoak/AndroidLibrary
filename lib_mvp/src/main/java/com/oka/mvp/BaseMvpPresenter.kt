@@ -48,5 +48,5 @@ open class BaseMvpPresenter<V : IMvpView> : IMvpPresenter<V> {
         return mViewRef?.get()
     }
 
-    
+
 }
